@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Sidebar from '../components/sideBar';
 
 const PokemonDetail = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const PokemonDetail = () => {
   return (
     pokemon ? (
       <div>
+        <Sidebar/>
         <h2>{pokemon.name}</h2>
         {/* Image Slider */}
         <div>
