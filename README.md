@@ -12,8 +12,8 @@ Pokémon Portal adalah aplikasi web yang dibangun dengan React dan Vite yang mem
 
 1. **Clone the repository**
    ```
-   git clone https://github.com/your-username/pokemon-portal.git
-   cd pokemon-portal
+   git clone https://github.com/fitramela/-PT-Svara-Inovasi-Indonesia.git
+   cd Pokemon
    ```
 
 2. **Install dependencies**
