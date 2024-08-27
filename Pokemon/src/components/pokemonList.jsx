@@ -60,6 +60,7 @@ const PokemonList = ({ typeFilter, searchQuery, currentPage, itemsPerPage, onPag
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             <p>Height: {pokemon.height}</p>
             <p>Weight: {pokemon.weight}</p>
+            <p>Type: {pokemon.types[0].type.name}</p>
             <p>Base Experience: {pokemon.base_experience}</p>
             <Link to={`/pokemon/${pokemon.id}`}>
               <button>View Details</button>
