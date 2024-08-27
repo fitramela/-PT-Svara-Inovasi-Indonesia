@@ -4,46 +4,72 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px;
+    width: 280px;
     height: 100vh;
-    background-color: #2a2a2a;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-  }
-  
-  .sidebar button {
+    background-color: #1e1e1e;
+    padding: 25px;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.sidebar button {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
+    padding: 14px;
+    margin-bottom: 25px;
     border: none;
-    background-color: #ff3d00;
+    border-radius: 8px;
+    background-color: #ff5722;
     color: white;
     font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sidebar button:hover {
-    background-color: #dd2c00;
-  }
-  
-  .sidebar .page-links a {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar button:hover {
+    background-color: #e64a19;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .page-links a {
     display: block;
-    padding: 12px;
+    padding: 14px;
     text-decoration: none;
-    color: #ffd700;
+    color: #ffd54f;
     font-size: 18px;
-    margin-bottom: 12px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sidebar .page-links a:hover {
-    background-color: #3d3d3d;
-  }
-  
-  .main-content {
-    margin-left: 270px; 
-    padding: 20px;
-    background-color: #1a1a1a;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .page-links a:hover {
+    background-color: #333333;
+    color: #ffeb3b;
+    transform: translateX(5px);
+}
+
+.main-content {
+    margin-left: 300px;
+    padding: 30px;
+    background-color: #121212;
     color: #ffffff;
-  }
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}

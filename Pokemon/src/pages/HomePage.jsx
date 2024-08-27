@@ -7,7 +7,7 @@ export default function HomePage() {
   const [typeFilter, setTypeFilter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 9;
 
   const handleTypeChange = (event) => {
     setTypeFilter(event.target.value);
