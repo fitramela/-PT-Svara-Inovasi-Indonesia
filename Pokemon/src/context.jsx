@@ -10,8 +10,12 @@ export const PokemonProvider = ({ children }) => {
     setSavedPokemon(prev => [...prev, { ...pokemon, alias }]);
   };
 
+  const removePokemon = (id) => {
+    setSavedPokemon(savedPokemon.filter(pokemon => pokemon.id !== id));
+  };
+
   return (
-    <PokemonContext.Provider value={{ savedPokemon, addPokemon }}>
+    <PokemonContext.Provider value={{ savedPokemon, addPokemon, removePokemon }}>
       {children}
     </PokemonContext.Provider>
   );

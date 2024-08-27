@@ -5,7 +5,7 @@
 }
 
 .pokemon-detail-content {
-  margin-left: 250px; /* Adjust based on Sidebar width */
+  margin-left: 250px; 
   padding: 20px;
   max-width: 1200px;
   margin: 20px auto;
@@ -34,8 +34,8 @@
 .pokemon-images img {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 150px; /* Adjust size as needed */
-  height: 150px; /* Adjust size as needed */
+  width: 170px; 
+  height: 170px; 
   object-fit: cover;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .moves-scroll {
-  max-height: 200px; /* Adjust height as needed */
+  max-height: 200px; 
   overflow-y: auto;
 }
 

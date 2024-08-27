@@ -1,37 +1,13 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { PokemonContext } from '../context';
 
-const PokemonList = ({ typeFilter, searchQuery, currentPage, itemsPerPage, onPageChange }) => {
-  const [pokemons, setPokemons] = useState([]);
-  const [totalItems, setTotalItems] = useState(0);
-
-  useEffect(() => {
-    const fetchPokemons = async () => {
-      try {
-
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${itemsPerPage}&offset=${(currentPage - 1) * itemsPerPage}`);
-        setTotalItems(response.data.count);
-
-
-        const details = await Promise.all(
-          response.data.results.map(pokemon => axios.get(pokemon.url))
-        );
-        setPokemons(details.map(d => d.data));
-      } catch (error) {
-        console.error("Error fetching Pokémon data:", error);
-      }
-    };
-
-    fetchPokemons();
-  }, [currentPage, itemsPerPage]);
-
-  const filteredPokemons = pokemons
-    .filter(pokemon => pokemon.name.toLowerCase().includes(searchQuery))
-    .filter(pokemon => !typeFilter || pokemon.types.some(type => type.type.name === typeFilter));
+const PokemonList = ({ pokemons, currentPage, itemsPerPage, totalItems, onPageChange }) => {
+  const { removePokemon } = useContext(PokemonContext);
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+
 
   const paginationRange = () => {
     let start = Math.max(1, currentPage - 2);
@@ -52,17 +28,21 @@ const PokemonList = ({ typeFilter, searchQuery, currentPage, itemsPerPage, onPag
   return (
     <div>
       <div className="pokemon-container">
-        {filteredPokemons.map(pokemon => (
+        {pokemons.map(pokemon => (
           <div key={pokemon.id} className="pokemon-card">
-            <h3>{pokemon.name}</h3>
+            <h3>{pokemon.name} {pokemon.alias}</h3>
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             <p>Height: {pokemon.height}</p>
             <p>Weight: {pokemon.weight}</p>
             <p>Type: {pokemon.types[0].type.name}</p>
             <p>Base Experience: {pokemon.base_experience}</p>
-            <Link to={`/pokemon/${pokemon.id}`}>
-              <button>View Details</button>
-            </Link>
+            <p>Alias: {pokemon.alias}</p>
+            <div className="pokemon-card-buttons">
+              <Link to={`/pokemon/${pokemon.id}`}>
+                <button>View Details</button>
+              </Link>
+              <button onClick={() => removePokemon(pokemon.id)}>Delete</button>
+            </div>
           </div>
         ))}
       </div>
@@ -97,12 +77,13 @@ const PokemonList = ({ typeFilter, searchQuery, currentPage, itemsPerPage, onPag
     </div>
   );
 };
+
 PokemonList.propTypes = {
-    typeFilter: PropTypes.string,
-    searchQuery: PropTypes.string,
-    currentPage: PropTypes.number.isRequired,
-    itemsPerPage: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-  };
+  pokemons: PropTypes.array.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  itemsPerPage: PropTypes.number.isRequired,
+  totalItems: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+};
 
 export default PokemonList;

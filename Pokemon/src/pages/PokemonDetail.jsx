@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import Slider from 'react-slick';
 import Sidebar from '../components/sideBar';
 import { PokemonContext } from '../context';
+import toast, { Toaster } from 'react-hot-toast';
 import "../cssPage/PokemonDetail.css";
 
 Modal.setAppElement('#root');
@@ -32,8 +33,21 @@ const PokemonDetail = () => {
   const closeModal = () => setIsOpen(false);
 
   const handleSavePokemon = () => {
-    addPokemon(pokemon, alias);
-    alert(`${pokemon.name} with alias ${alias} added to your list!`);
+    toast.promise(
+      new Promise((resolve, reject) => {
+        try {
+          addPokemon(pokemon, alias);
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      }),
+      {
+        loading: 'Saving...',
+        success: `${pokemon.name} with alias ${alias} added to your list!`,
+        error: <b>Could not save the Pokémon.</b>,
+      }
+    );
   };
 
   const imageUrls = pokemon ? [
@@ -56,6 +70,7 @@ const PokemonDetail = () => {
   return (
     pokemon ? (
       <div className="pokemon-detail-container">
+        <Toaster />
         <Sidebar />
         <div className="pokemon-detail-content">
           <header className="pokemon-header">

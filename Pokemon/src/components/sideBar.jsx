@@ -1,11 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import "../cssPage/Sidebar.css"; // Custom CSS for styling
+import "../cssPage/Sidebar.css"; 
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate(-1); // Go back to the previous page
+    navigate(-1); 
   };
 
   return (
@@ -14,9 +14,6 @@ const Sidebar = () => {
       <div className="page-links">
         <Link to="/">Home</Link>
         <Link to="/collected">Collected Pokemon</Link>
-        <Link to="/page/2">Page 2</Link>
-        <Link to="/page/3">Page 3</Link>
-        {/* Add more links as needed */}
       </div>
     </div>
   );
