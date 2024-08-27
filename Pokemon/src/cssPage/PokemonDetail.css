@@ -2,6 +2,9 @@
 
 .pokemon-detail-container {
   display: flex;
+  background: url('https://wallpaperaccess.com/full/24957.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .pokemon-detail-content {
@@ -9,18 +12,35 @@
   padding: 20px;
   max-width: 1200px;
   margin: 20px auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .pokemon-header {
   text-align: center;
   margin-bottom: 20px;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .pokemon-main {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.pokemon-main:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .pokemon-images {
@@ -33,10 +53,16 @@
 
 .pokemon-images img {
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 170px; 
-  height: 170px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 200px; 
+  height: 200px; 
   object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.pokemon-images img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(255, 215, 0, 0.5);
 }
 
 .pokemon-audio {
@@ -46,21 +72,18 @@
 
 .pokemon-info {
   margin-bottom: 20px;
+  color: #f0f0f0;
 }
 
-.pokemon-info p {
-  font-size: 16px;
-  color: #333;
+.pokemon-info p, .pokemon-info li {
+  font-size: 18px;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .pokemon-info ul {
   list-style: none;
   padding: 0;
-}
-
-.pokemon-info li {
-  font-size: 16px;
-  color: #333;
 }
 
 .pokemon-moves {
@@ -70,27 +93,42 @@
 .moves-scroll {
   max-height: 200px; 
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ffd700 #333;
 }
 
 .move-item {
   margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgba(255, 215, 0, 0.1);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.move-item:hover {
+  background-color: rgba(255, 215, 0, 0.2);
+  transform: translateX(5px);
 }
 
 .pokemon-add-button {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   border: none;
-  background-color: #007bff;
+  background-color: #ff3d00;
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .pokemon-add-button:hover {
-  background-color: #0056b3;
+  background-color: #dd2c00;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 61, 0, 0.3);
 }
 
 /* modal */
@@ -102,11 +140,24 @@
   right: auto;
   bottom: auto;
   transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 500px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 15px;
+  padding: 30px;
+  color: #f0f0f0;
+  animation: modalFadeIn 0.5s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { 
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to { 
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .pokemon-modal-overlay {
@@ -115,22 +166,36 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.85);
   z-index: 1000;
+  animation: overlayFadeIn 0.3s ease-out;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-image {
   width: 100%;
   height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
 .modal-close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 24px;
+  color: #ffd700;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.modal-close-button:hover {
+  color: #ff3d00;
+  transform: rotate(90deg);
+}
